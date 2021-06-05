@@ -12,12 +12,13 @@ buildscript {
   dependencies {
     classpath Libs.androidGradlePlugin
     classpath Libs.Kotlin.gradlePlugin
-    classpath Libs.Hilt.plugin
+    classpath Libs.Google.hiltPlugin
   }
 }
 
 plugins {
-  id 'com.diffplug.spotless' version '5.11.1'
+  id("com.diffplug.spotless").version('5.12.5')
+  id("se.ascp.gradle.gradle-versions-filter").version('0.1.8')
 }
 
 subprojects {
@@ -25,12 +26,9 @@ subprojects {
     google()
     mavenCentral()
     jcenter()
-    if (Libs.Accompanist.version.endsWith('SNAPSHOT')) {
-      maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
-    }
   }
 
-  apply plugin: 'com.diffplug.spotless'
+  apply plugin: Libs.Plugins.spotless
   spotless {
     kotlin {
       target '**/*.kt'

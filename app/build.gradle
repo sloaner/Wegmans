@@ -31,7 +31,7 @@ android {
 
     javaCompileOptions {
       annotationProcessorOptions {
-        arguments = [
+        arguments += [
             "room.incremental"     : "true",
             "room.expandProjection": "true"
         ]
@@ -86,6 +86,10 @@ dependencies {
   implementation Libs.AndroidX.Lifecycle.viewmodel
   implementation Libs.AndroidX.Lifecycle.viewModelCompose
 
+  implementation Libs.AndroidX.Room.runtime
+  implementation Libs.AndroidX.Room.ktx
+  kapt Libs.AndroidX.Room.compiler
+
   implementation Libs.Accompanist.coil
   implementation Libs.Accompanist.pager
   implementation Libs.Accompanist.insets
@@ -93,13 +97,10 @@ dependencies {
   implementation Libs.OkHttp.okhttp
   implementation Libs.OkHttp.logging
 
-  implementation Libs.Hilt.hilt
-  kapt Libs.Hilt.kapt
+  implementation Libs.Google.hilt
+  kapt Libs.Google.hiltKapt
 
-  implementation Libs.AndroidX.Room.runtime
-  implementation Libs.AndroidX.Room.ktx
-
-  kapt Libs.AndroidX.Room.compiler
+  implementation Libs.Google.material
 
   coreLibraryDesugaring Libs.jdkDesugar
 

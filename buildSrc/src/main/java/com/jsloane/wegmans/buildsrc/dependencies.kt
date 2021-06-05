@@ -26,10 +26,15 @@ object Versions {
 
 object Libs {
     const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.0-beta03"
-    const val jdkDesugar = "com.android.tools:desugar_jdk_libs:1.0.9"
+    const val jdkDesugar = "com.android.tools:desugar_jdk_libs:1.1.5"
+
+    object Plugins {
+        const val dependencyVersion = "com.github.ben-manes.versions"
+        const val spotless = "com.diffplug.spotless"
+    }
 
     object Accompanist {
-        const val version = "0.11.0"
+        const val version = "0.11.1"
         const val coil = "com.google.accompanist:accompanist-coil:$version"
         const val insets = "com.google.accompanist:accompanist-insets:$version"
         const val pager = "com.google.accompanist:accompanist-pager:$version"
@@ -43,7 +48,7 @@ object Libs {
     }
 
     object Coroutines {
-        private const val version = "1.4.2"
+        private const val version = "1.5.0"
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
         const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -55,20 +60,23 @@ object Libs {
         const val logging = "com.squareup.okhttp3:logging-interceptor:$version"
     }
 
-    object Hilt {
-        private const val version = "2.36"
-        const val plugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
-        const val hilt = "com.google.dagger:hilt-android:$version"
-        const val kapt = "com.google.dagger:hilt-android-compiler:$version"
-    }
-
     object JUnit {
         private const val version = "4.13.2"
         const val junit = "junit:junit:$version"
     }
 
+    object Google {
+        private const val version = "1.3.0"
+        const val material = "com.google.android.material:material:$version"
+
+        private const val hiltVersion = "2.36"
+        const val hiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
+        const val hilt = "com.google.dagger:hilt-android:$hiltVersion"
+        const val hiltKapt = "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    }
+
     object AndroidX {
-        const val appcompat = "androidx.appcompat:appcompat:1.2.0"
+        const val appcompat = "androidx.appcompat:appcompat:1.3.0"
         const val palette = "androidx.palette:palette:1.0.0"
 
         const val coreKtx = "androidx.core:core-ktx:1.6.0-beta02"
@@ -112,7 +120,7 @@ object Libs {
                 const val junit = "androidx.test.ext:junit-ktx:$version"
             }
 
-            const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
+            const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0"
         }
 
         object Room {
