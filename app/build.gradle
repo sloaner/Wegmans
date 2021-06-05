@@ -1,0 +1,110 @@
+import com.jsloane.wegmans.buildsrc.Libs
+import com.jsloane.wegmans.buildsrc.Versions
+
+plugins {
+  id 'com.android.application'
+  id 'kotlin-android'
+  id 'kotlin-kapt'
+  id 'dagger.hilt.android.plugin'
+}
+
+kapt {
+  correctErrorTypes = true
+  useBuildCache = true
+}
+
+android {
+  compileSdkVersion Versions.compileSdk
+  buildToolsVersion Versions.buildTools
+
+  defaultConfig {
+    applicationId "com.jsloane.wegmans"
+    minSdkVersion Versions.minSdk
+    targetSdkVersion Versions.targetSdk
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    vectorDrawables {
+      useSupportLibrary true
+    }
+
+    javaCompileOptions {
+      annotationProcessorOptions {
+        arguments = [
+            "room.incremental"     : "true",
+            "room.expandProjection": "true"
+        ]
+      }
+    }
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  compileOptions {
+    coreLibraryDesugaringEnabled true
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions {
+    jvmTarget = '1.8'
+    useIR = true
+  }
+
+  buildFeatures {
+    compose true
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+  }
+}
+
+dependencies {
+  implementation Libs.Kotlin.stdlib
+  implementation Libs.Coroutines.android
+
+  implementation Libs.AndroidX.coreKtx
+  implementation Libs.AndroidX.appcompat
+  implementation Libs.AndroidX.palette
+
+  implementation Libs.AndroidX.Activity.activityCompose
+
+  implementation Libs.AndroidX.Constraint.constraintLayoutCompose
+
+  implementation Libs.AndroidX.Compose.foundation
+  implementation Libs.AndroidX.Compose.material
+  implementation Libs.AndroidX.Compose.materialIconsExtended
+  implementation Libs.AndroidX.Compose.tooling
+
+  implementation Libs.AndroidX.Lifecycle.viewmodel
+  implementation Libs.AndroidX.Lifecycle.viewModelCompose
+
+  implementation Libs.Accompanist.coil
+  implementation Libs.Accompanist.pager
+  implementation Libs.Accompanist.insets
+
+  implementation Libs.OkHttp.okhttp
+  implementation Libs.OkHttp.logging
+
+  implementation Libs.Hilt.hilt
+  kapt Libs.Hilt.kapt
+
+  implementation Libs.AndroidX.Room.runtime
+  implementation Libs.AndroidX.Room.ktx
+
+  kapt Libs.AndroidX.Room.compiler
+
+  coreLibraryDesugaring Libs.jdkDesugar
+
+  testImplementation Libs.JUnit.junit
+  androidTestImplementation Libs.AndroidX.Test.Ext.junit
+  androidTestImplementation Libs.AndroidX.Test.espressoCore
+  androidTestImplementation Libs.AndroidX.Compose.junit
+}
